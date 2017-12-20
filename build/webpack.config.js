@@ -207,6 +207,12 @@ if (!__TEST__) {
 // Production Optimizations
 // ------------------------------------
 if (__PROD__) {
+  config.module.rules.push({
+    test: /_redirects$/,
+    exclude: /node_modules/,
+    use: [ 'file-loader?name=[name]' ]
+  })
+
   config.plugins.push(
     new webpack.LoaderOptionsPlugin({
       minimize: true,
